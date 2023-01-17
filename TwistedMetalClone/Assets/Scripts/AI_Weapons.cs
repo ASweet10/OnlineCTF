@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapons : MonoBehaviour
+public class AI_Weapons : MonoBehaviour
 {
-    [Header("Weapon Controls")]
-    [SerializeField] private KeyCode weaponOneKey = KeyCode.Alpha1;
-    [SerializeField] private KeyCode weaponTwoKey = KeyCode.Alpha2;
-    [SerializeField] private KeyCode machineGunKey = KeyCode.Space;
-
-
     [SerializeField] private GameObject homingMissile;
     [SerializeField] private GameObject machineGunBullet;
     [SerializeField] private Transform missileSpawnPointOne;
@@ -21,11 +15,6 @@ public class Weapons : MonoBehaviour
     private bool slotOneFull = false;
     private bool slotTwoFull = false;
 
-    private void Awake()
-    {
-
-    }
-
     private void Update()
     {
         if(canUseWeapons)
@@ -36,19 +25,9 @@ public class Weapons : MonoBehaviour
 
     private void HandleWeaponInput()
     {
-        // Player has weapon?
-        //if(slotOneFull)
-        //{
-            if(Input.GetKeyDown(weaponOneKey))
-            {
-                FireMissile();
-            }
-            
-            if(Input.GetKey(machineGunKey))
-            {
-                UseTheMachineGun();
-            }
-        //}
+        //If player in range / in FOV cone?
+        FireMissile();
+        UseTheMachineGun();
     }
 
     private void FireMissile()
